@@ -1,0 +1,14 @@
+<mat-list>
+    <mat-list-item *ngFor="let message of conversation">
+        <mat-icon matListIcon>{{message.avatar}}</mat-icon>
+        <h3 matLine>{{message.from}}</h3>
+        <p matLine>
+            <span>{{message.content}}</span>
+    </mat-list-item>
+</mat-list>
+<form (ngSubmit)="formSubmit(chatInput)">
+    <mat-form-field>
+        <input matInput maxlength="256" placeholder="Message" #chatInput>
+        <mat-icon matSuffix (click)="formSubmit(chatInput)" class="send-icon">send</mat-icon>
+    </mat-form-field>
+</form>
