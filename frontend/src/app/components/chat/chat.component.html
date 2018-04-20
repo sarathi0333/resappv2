@@ -1,11 +1,9 @@
-<mat-list>
-    <mat-list-item *ngFor="let message of conversation">
-        <mat-icon matListIcon>{{message.avatar}}</mat-icon>
-        <h3 matLine>{{message.from}}</h3>
-        <p matLine>
-            <span>{{message.content}}</span>
-    </mat-list-item>
-</mat-list>
+<div class="chat-list">
+    <div #chatfield></div>
+    <!-- <div *ngFor="let message of conversation">
+        <span @fade typingAnimation [typeSpeed]="20" [startDelay]="800" [hideCursorOnComplete]="true" class="chat-msg">{{message.content}}</span>
+    </div> -->
+</div>
 <form (ngSubmit)="formSubmit(chatInput)">
     <mat-form-field>
         <input matInput maxlength="256" placeholder="Message" #chatInput>

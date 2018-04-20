@@ -1,45 +1,58 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { IMessage, PostMessage } from './../../models/message';
 import { NetworkService } from './../../services/network.service';
-import { NgForm } from '@angular/forms';
-import { ElementRef } from '@angular/core';
+import { TypingAnimationDirective } from 'angular-typing-animation'
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ transform: 'translateY(500px)' }),
+        animate(500)
+      ])
+    ])
+  ]
 })
-export class ChatComponent implements OnInit {
-  conversation = [
-    {
-      avatar: "home",
-      from: "Me",
-      content: "Good evening, Sarath"
-    }
-  ];
+export class ChatComponent {
+  conversation = [{
+    avatar: "home",
+    from: "Me",
+    content: "Good evening, Sarath",
+    userMsg: false
+  }];
   data: PostMessage = {
     url: "/message",
     msg: "Hello"
   }
-  value: string = '';
-  constructor(private networkService: NetworkService) { }
+
+  @ViewChild('chatfield') chatfield: ElementRef;
+
+  constructor(private networkService: NetworkService, private renderer: Renderer2) { }
 
   ngOnInit() {
   }
 
 
   formSubmit(chatInput) {
+    console.log(chatInput);
     this.conversation.push({
       avatar: "perm_identity",
       from: "Me",
-      content: chatInput.value
+      content: chatInput.value,
+      userMsg: true
     })
     this.data.msg = chatInput.value;
-    this.networkService.postMsg(this.data)
-      .subscribe((response) => {
-        console.log(response);
-        chatInput.value = '';
-      })
-
+    // this.networkService.postMsg(this.data)
+    //   .subscribe((response) => {
+    //     console.log(response);
+    //     chatInput.value = '';
+    //     
+    //   })
+    chatInput.value = '';
   }
+
 }

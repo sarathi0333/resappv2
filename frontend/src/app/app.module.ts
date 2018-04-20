@@ -4,8 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 
+
 import { AppComponent } from './app.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { TypingAnimationDirective } from 'angular-typing-animation'
+
 
 import { NetworkService } from './services/network.service';
 
@@ -13,7 +16,8 @@ import { NetworkService } from './services/network.service';
 @NgModule({
   declarations: [
     AppComponent,
-    ChatComponent
+    ChatComponent,
+    TypingAnimationDirective
   ],
   imports: [
     BrowserModule,

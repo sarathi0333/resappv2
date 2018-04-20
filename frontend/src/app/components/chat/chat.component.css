@@ -1,16 +1,27 @@
-/* mat-list {
-    height: 500px;
-    max-height: 60%;
-    overflow-y: scroll;
+* {
+    list-style-type: none;
 }
 
-mat-icon {
-    color: purple;
-    cursor: pointer;
-} */
+.chat-list {
+    height: 500px;
+    max-width: 450px;
+    overflow: auto;
+}
 
-p {
-    background: grey;
+.mat-icon-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.chat-msg {
+    background: #64dd17;
+    padding: 5px 10px 5px 10px;
+    display: inline-flex;
+    border-radius: 15px 50px 50px 5px;
+    color: white;
+    margin-bottom: 2px;
+    font-family: cursive;
 }
 
 .send-icon {
